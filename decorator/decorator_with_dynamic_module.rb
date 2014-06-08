@@ -15,15 +15,14 @@ end
 # Dynamic define Cold Module example
 Cold = coffee_decorator('Cold', 0.9)
 
-require 'test/unit'
-
-class DecoratorWithModuleTest < Test::Unit::TestCase
-  def test_decorator    
-    coffee = Coffee.new.extend(coffee_decorator("Milk", 0.5)).
-                        extend(coffee_decorator("Whip", 0.7)).
-                        extend(coffee_decorator("Sprinkles", 0.2))
-                        
-    assert_in_delta 2.4, coffee.cost, 0.0000001
-    assert_equal 'Coffee, Milk, Whip, Sprinkles', coffee.ingredient
+class CoffeeFactory
+  def self.new_coffee
+    Coffee.new.extend(coffee_decorator("Milk", 0.5)).
+               extend(coffee_decorator("Whip", 0.7)).
+               extend(coffee_decorator("Sprinkles", 0.2))
   end
 end
+
+
+# run tests
+require 'coffee_test'

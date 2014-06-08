@@ -31,13 +31,12 @@ module Sprinkles
 end
 
 
-
-require 'test/unit'
-
-class DecoratorWithModuleTest < Test::Unit::TestCase
-  def test_decorator
-    coffee = Coffee.new.extend(Milk).extend(Whip).extend(Sprinkles)
-    assert_in_delta 2.4, coffee.cost, 0.0000001
-    assert_equal 'Coffee, Milk, Whip, Sprinkles', coffee.ingredient
+class CoffeeFactory
+  def self.new_coffee
+    Coffee.new.extend(Milk).extend(Whip).extend(Sprinkles)
   end
 end
+
+
+# run tests
+require 'coffee_test'
